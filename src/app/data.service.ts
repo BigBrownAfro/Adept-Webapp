@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+
 import {UserInfo} from './UserInfo';
 
 @Injectable({
@@ -9,7 +13,9 @@ export class DataService {
 
   private currentUser:UserInfo;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+
+  }
 
   //Attempts to log the user in given user login info by checking it against the user database
   login(user:UserInfo):boolean{
@@ -24,5 +30,10 @@ export class DataService {
   logout(){
     this.isSignedIn = false;
     this.currentUser = null;
+  }
+
+  testApi(){
+    console.log("Attempting to get from server...");
+    this.http.get("http://localhost:3000/products/").subscribe((data) => console.log(data));
   }
 }
