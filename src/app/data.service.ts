@@ -35,5 +35,10 @@ export class DataService {
   testApi(){
     console.log("Attempting to get from server...");
     this.http.get("http://localhost:3000/products/").subscribe((data) => console.log(data));
+    console.log("Attempting to Post to server...");
+    this.http.post("http://localhost:3000/products/",{
+      name: "Product name 3",
+      price: 23.99
+    }).subscribe((data) => console.log(data));
   }
 }
