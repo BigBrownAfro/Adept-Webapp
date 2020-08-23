@@ -3,7 +3,8 @@
     width:100%;
     position: absolute;
     overflow:hidden; /* or overflow:auto; if you want scrollbars */
-    background-image: linear-gradient(rgb(255, 255, 255), rgb(165, 178, 180));
+    background-color: rgb(22, 22, 22);
+    /*background-image: linear-gradient(rgb(36, 36, 36), rgb(0, 0, 0));*/
 }
 
 .login-box-container{
@@ -13,15 +14,17 @@
     text-align: center;
     width: 40rem;
     padding: 1rem;
-    background-color: rgb(245, 249, 250);
-    outline: 1px rgb(207, 220, 224) solid;
+    
+    background-color: rgb(27, 27, 27);
+    /*background-image: linear-gradient(rgb(255, 255, 255),rgb(246, 230, 253));*/
+    outline: 1px rgb(152, 133, 170) solid;
 
     display: flex;
     flex-direction: column;
     align-items: center;
 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: rgb(70, 70, 70);
+    color: rgb(150, 150, 150);
 }
 
 .login-title{
@@ -37,20 +40,24 @@
 input{
     margin-top: 1px;
     padding-left: 1rem;
-    border: rgb(201, 201, 201) 1px solid;
     width: 90%;
     height: 2rem;
+
+    background-color: rgb(22, 22, 22);
+    border: rgb(152, 133, 170) 1px solid;
+
     font-size: medium;
+    color: rgb(150, 150, 150);
 }
 
 .login-button{
     margin-top: 4px;
-    background-color: rgb(226, 236, 248);
-    border: rgb(183, 197, 211) 1px solid;
+    background-color: rgb(36, 27, 49);
+    border: rgb(152, 133, 170) 1px solid;
     width: 93%;
     height: 2rem;
     font-size: large;
-    color: rgb(80, 80, 80);
+    color: rgb(128, 128, 128);
 }
 
 .login-button:hover{
@@ -62,7 +69,7 @@ input{
 }
 
 .link{
-    color: rgb(84, 153, 218);
+    color: rgb(164, 84, 218);
 }
 
 .link:hover{
