@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*-----------------Material theming-------------*/
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+/*--------------------------------------------*/
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -24,6 +28,8 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(150, 150, 150);
 }
 
 input:focus, textarea:focus, select:focus, button:focus{
@@ -50,6 +56,26 @@ table {
 	border-spacing: 0;
 }
 
+/*-------------My Changes-------------*/
+
 html{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(22, 22, 22);
 }
+
+.link{
+    color: rgb(164, 84, 218);
+}
+
+.link:hover{
+    cursor: pointer;
+}
+
+h1{
+	font-size: 2.5rem;
+}
+
+h2{
+	font-size: 1.5rem;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,20 +1,11 @@
-.page{
-    height:100%;
-    width:100%;
-    position: absolute;
-    overflow:hidden; /* or overflow:auto; if you want scrollbars */
-    background-color: rgb(22, 22, 22);
-    /*background-image: linear-gradient(rgb(36, 36, 36), rgb(0, 0, 0));*/
-}
-
-.login-box-container{
+.signup-box-container{
     margin-left: auto;
     margin-right: auto;
     margin-top: 10rem;
     text-align: center;
-    width: 40rem;
+    width: 30rem;
     padding: 1rem;
-    
+
     background-color: rgb(27, 27, 27);
     outline: 1px rgb(152, 133, 170) solid;
 
@@ -23,17 +14,27 @@
     align-items: center;
 }
 
-.login-title{
+.title{
     margin-bottom: 1rem;
 }
 
-.login-subtitle{
+.subtitle{
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
 
+.input-container{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 input{
-    margin-top: 1px;
+    margin-top: 7px;
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 1rem;
     width: 90%;
     height: 2rem;
@@ -45,20 +46,25 @@ input{
     color: rgb(150, 150, 150);
 }
 
-.login-button{
-    margin-top: 4px;
+.validation-icon{
+    font-size: 1.5rem;
+    color: rgb(164, 84, 218);
+}
+
+.signup-button{
+    margin-top: 14px;
     background-color: rgb(36, 27, 49);
     border: rgb(152, 133, 170) 1px solid;
-    width: 93%;
+    width: 94%;
     height: 2rem;
     font-size: large;
     color: rgb(128, 128, 128);
 }
 
-.login-button:hover{
+.signup-button:hover{
     cursor: pointer;
 }
 
-.sign-up-text{
+.return-text{
     margin-top: 1rem;
 }

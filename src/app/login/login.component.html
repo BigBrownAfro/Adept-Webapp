@@ -1,11 +1,10 @@
-<div class="page">
-    <div (keyup)="onKeyUp($event)" class="login-box-container">
-        <div class="login-title">Worthless Login Page</div>
-        <div class="login-subtitle">Please sign in with your <span class="link">Adept</span> account.</div>
-        <input #username (input)="setUsername(username.value)" type="text" placeholder="Username">
-        <input #password (input)="setPassword(password.value)" type="password" placeholder="Password">
-        <button (click)="login()" class="login-button">Sign in</button>
-        <div class="sign-up-text">Don't have an account? <span class="link">Sign up</span></div>
-        <div class="sign-up-text">Don't care to have an account? <span class="link">Continue without signing in</span></div>
-    </div>
+
+<div (keyup)="onKeyUp($event)" class="login-box-container">
+    <h1 class="login-title">Worthless Login Page</h1>
+    <h2 class="login-subtitle">Please sign in with your <span class="link">Adept</span> account.</h2>
+    <input #username (input)="setUsername(username.value)" type="text" placeholder="Username">
+    <input #password (input)="setPassword(password.value)" type="password" placeholder="Password">
+    <button (click)="login()" class="login-button">Sign in</button>
+    <div class="sign-up-text">Don't have an account? <span class="link" routerLink="/signup">Sign up</span></div>
+    <div class="sign-up-text">Don't care to have an account? <span class="link">Continue without signing in</span></div>
 </div>

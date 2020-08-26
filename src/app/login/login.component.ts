@@ -7,8 +7,8 @@ import { DataService } from  '../data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private username;
-  private password;
+  private username:string;
+  private password:string;
 
   constructor(private dataService:DataService) {
     console.log("I LIVE!");
@@ -18,25 +18,38 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setUsername(username:String){
+  /**
+   * Sets the username to be used on sign-in
+   * @param username username of user
+   */
+  setUsername(username:string){
     this.username = username;
   }
 
-  setPassword(password:String){
-    this.password = password;
+  /**
+   * Sets the password to be used on sign-in
+   * @param rawPass password of user
+   */
+  setPassword(rawPass:string){
+    this.password = rawPass;
+    //console.log("raw pass: " + password);
+    //console.log("hashed pass: " + encrypt.hash(password));
   }
 
+  /**
+   * Checks keyboard events and signs in on "enter"
+   * @param event any keyboard event
+   */
   onKeyUp(event:KeyboardEvent){
     if(event.key === "Enter"){
       this.login();
     }
   }
 
+  /**
+   * Attempts a login of the given user details
+   */
   login(){
-    console.log("Username: " + this.username);
-    console.log("Password: " + this.password);
-    
-    //this.dataService.testApi();
+    this.dataService.login(this.username, this.password);
   }
-
 }

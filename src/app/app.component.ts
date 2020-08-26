@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'AdeptWebApp';
 
   constructor(private router:Router){
-    router.navigateByUrl("login");
+    //router.navigateByUrl("login");
   }
 }

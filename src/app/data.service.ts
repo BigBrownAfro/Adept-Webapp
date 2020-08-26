@@ -3,42 +3,45 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import {UserInfo} from './UserInfo';
-
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private isSignedIn:boolean = false;
+  private serverAddress:string = "http://localhost:3000/";
 
-  private currentUser:UserInfo;
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {
-
-  }
-
-  //Attempts to log the user in given user login info by checking it against the user database
-  login(user:UserInfo):boolean{
-    //get list of usernames
-    //find name in the list (if not found return false)
-    //hash the entered password and compare to saved hash
+  /**
+   * Attempts to login the user by sending the user info to the Adept server
+   * @param username user username
+   * @param password user password
+   */
+  login(username:string, password:string):boolean{
+    var signedIn = false;
+    this.http.post(this.serverAddress + "user/login/",{
+      username: username,
+      password: password
+    }).subscribe((data) => {
+      console.log(data)
+      //signedIn = data.signedIn;
+    });
+    
     //this.isSignedIn = true;
-    return false;
+    return signedIn;
   }
 
   //signs the user out and wipes saved info
   logout(){
-    this.isSignedIn = false;
-    this.currentUser = null;
+    //this.isSignedIn = false;
   }
 
-  testApi(){
+  /*testApi(){
     console.log("Attempting to get from server...");
-    this.http.get("http://localhost:3000/products/").subscribe((data) => console.log(data));
+    this.http.get(this.serverAddress + "products/").subscribe((data) => console.log(data));
     console.log("Attempting to Post to server...");
-    this.http.post("http://localhost:3000/products/",{
+    this.http.post(this.serverAddress + "products/",{
       name: "Product name 3",
       price: 23.99
     }).subscribe((data) => console.log(data));
-  }
+  }*/
 }

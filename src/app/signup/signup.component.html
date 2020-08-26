@@ -1,0 +1,19 @@
+
+<div (keyup)="onKeyUp($event)" class="signup-box-container">
+    <h1 class="title"><span class="link">Adept</span> Account Signup</h1>
+    <h2 class="subtitle">Create your account.</h2>
+    <div class="input-container">
+        <input #email (input)="setEmail(email.value)" type="text" placeholder="Email">
+        <div *ngIf="!emailIsValid" class="validation-icon" matTooltip="Email is already in use by another account">_X</div>
+    </div>
+    <div class="input-container">
+        <input #username (input)="setUsername(username.value)" type="text" placeholder="Username">
+    </div>
+    <input #firstName (input)="setFirstName(firstName.value)" type="text" placeholder="First Name">
+    <input #lastName (input)="setLastName(lastName.value)" type="text" placeholder="Last Name">
+    <input #favoriteColor (input)="setFavoriteColor(favoriteColor.value)" type="text" placeholder="Favorite Color">
+    <input #password (input)="setPassword(password.value)" type="password" placeholder="Password">
+    <input #confirmPassword (input)="setPassword(confirmPassword.value)" type="password" placeholder="Confirm Password">
+    <button (click)="signup()" class="signup-button">Signup</button>
+    <div class="return-text">Already have an account? <span routerLink="/login" class="link">Return to login</span></div>
+</div>
