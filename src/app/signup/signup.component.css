@@ -53,6 +53,8 @@ input{
 
 .signup-button{
     margin-top: 14px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: rgb(36, 27, 49);
     border: rgb(152, 133, 170) 1px solid;
     width: 94%;

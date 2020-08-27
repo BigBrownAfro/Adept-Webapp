@@ -21,27 +21,36 @@ export class DataService {
     this.http.post(this.serverAddress + "user/login/",{
       username: username,
       password: password
-    }).subscribe((data) => {
-      console.log(data)
-      //signedIn = data.signedIn;
+    }).subscribe((res) => {
+      console.log(res)
+      //signedIn = res.signedIn;
     });
     
     //this.isSignedIn = true;
     return signedIn;
   }
 
-  //signs the user out and wipes saved info
   logout(){
     //this.isSignedIn = false;
   }
 
-  /*testApi(){
-    console.log("Attempting to get from server...");
-    this.http.get(this.serverAddress + "products/").subscribe((data) => console.log(data));
-    console.log("Attempting to Post to server...");
-    this.http.post(this.serverAddress + "products/",{
-      name: "Product name 3",
-      price: 23.99
-    }).subscribe((data) => console.log(data));
-  }*/
+  /**
+   * Checks to see if an email is available for use by a new account
+   * @param email Email to be checked by server
+   */
+  async checkEmailAvailability(email:string):Promise<boolean>{
+    var isAvailable = false;
+    /*this.http.get(this.serverAddress + "user/verify/email/" + email)
+      .subscribe((res: {message:string, boolean:boolean}) => {
+        isAvailable = !res.boolean;
+        return isAvailable;
+      });*/
+    var asyncResult = await this.http.get(this.serverAddress + "user/verify/email/" + email)
+      .toPromise()
+      /*.then((res: {message:string, boolean:boolean}) => {
+        isAvailable = !res.boolean;
+      });*/
+    
+    return isAvailable;
+  }
 }
