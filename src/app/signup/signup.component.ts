@@ -31,27 +31,27 @@ export class SignupComponent implements OnInit {
   }
 
   /**
-   * Sets the email to be used on signup
+   * Sets the email to be used on signup and validates it
    * @param email email of user
    */
   setEmail(email:string){
     this.email = email;
 
-    if(this.email.match("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")){
+    if(this.email.match("^(\\w|\\.)+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")){
       this.emailIsValid = true;
-      //this.emailIsAvailable = this.dataService.checkEmailAvailability(this.email);
-      console.log("Email is available: " + this.emailIsAvailable);
+      this.checkEmailAvailability();
     } else {
       this.emailIsValid = false;
     }
   }
 
   async checkEmailAvailability(){
-    this.dataService.checkEmailAvailability(this.email)
+    var av = await this.dataService.checkEmailAvailability(this.email)
+    this.emailIsAvailable = av;
   }
 
   /**
-   * Sets the username to be used on signup
+   * Sets the username to be used on signup and validates it
    * @param username username of user
    */
   setUsername(username:string){
@@ -59,13 +59,19 @@ export class SignupComponent implements OnInit {
 
     if (username.match("^([a-zA-Z0-9_]{4,15})$")){
       this.usernameIsValid = true;
+      this.checkUsernameAvailability();
     } else {
       this.usernameIsValid = false;
     }
   }
 
+  async checkUsernameAvailability(){
+    var av = await this.dataService.checkUsernameAvailability(this.username);
+    this.usernameIsAvailable = av;
+  }
+
   /**
-   * Sets the password to be used on signup
+   * Sets the password to be used on signup and validates it
    * @param rawPass password of user
    */
   setPassword(rawPass:string){

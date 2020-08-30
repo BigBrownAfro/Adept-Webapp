@@ -36,7 +36,7 @@
     </div>
 
     <div class="input-container">
-        <button (click)="signup()" class="signup-button">Signup</button>
+        <button (click)="signup()" (click)="checkUsernameAvailability()" class="signup-button">Signup</button>
     </div>
 
     <div class="return-text">Already have an account? <span routerLink="/login" class="link">Return to login</span></div>

@@ -8,26 +8,31 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class DataService {
   private serverAddress:string = "http://localhost:3000/";
+  private signedIn = false;
 
   constructor(private http: HttpClient) { }
+
+  isSignedIn():boolean{
+    return this.signedIn;
+  }
 
   /**
    * Attempts to login the user by sending the user info to the Adept server
    * @param username user username
    * @param password user password
    */
-  login(username:string, password:string):boolean{
-    var signedIn = false;
-    this.http.post(this.serverAddress + "user/login/",{
+  async login(username:string, password:string):Promise<boolean>{
+    this.signedIn = false;
+
+    await this.http.post(this.serverAddress + "user/login/",{
       username: username,
       password: password
-    }).subscribe((res) => {
+    }).subscribe((res:{message:string,signedIn:boolean}) => {
       console.log(res)
-      //signedIn = res.signedIn;
+      this.signedIn = res.signedIn;
     });
-    
-    //this.isSignedIn = true;
-    return signedIn;
+
+    return this.signedIn;
   }
 
   logout(){
@@ -35,22 +40,38 @@ export class DataService {
   }
 
   /**
-   * Checks to see if an email is available for use by a new account
+   * Checks to see if an email is associated with an account
    * @param email Email to be checked by server
    */
   async checkEmailAvailability(email:string):Promise<boolean>{
     var isAvailable = false;
-    /*this.http.get(this.serverAddress + "user/verify/email/" + email)
-      .subscribe((res: {message:string, boolean:boolean}) => {
-        isAvailable = !res.boolean;
-        return isAvailable;
-      });*/
-    var asyncResult = await this.http.get(this.serverAddress + "user/verify/email/" + email)
+
+    await this.http.get(this.serverAddress + "user/verify/email/" + email)
       .toPromise()
-      /*.then((res: {message:string, boolean:boolean}) => {
+      .then((res: {message:string, boolean:boolean}) => {
         isAvailable = !res.boolean;
-      });*/
-    
+      }).catch(err => {
+        console.log(err);
+      });
+
+    return isAvailable;
+  }
+
+  /**
+   * Checks to see if a username is associated with an account
+   * @param username Username to be checked by server
+   */
+  async checkUsernameAvailability(username:string):Promise<boolean>{
+    var isAvailable = false;
+
+    await this.http.get(this.serverAddress + "user/verify/username/" + username)
+      .toPromise()
+      .then((res: {message:string, boolean:boolean}) => {
+        isAvailable = !res.boolean;
+      }).catch(err => {
+        console.log(err);
+      });
+
     return isAvailable;
   }
 }
