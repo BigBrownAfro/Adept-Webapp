@@ -16,7 +16,8 @@
     padding: 1rem;
     
     background-color: rgb(27, 27, 27);
-    outline: 1px rgb(152, 133, 170) solid;
+	border: 2px rgb(152, 133, 170) solid;
+	border-radius: 5px;
 
     display: flex;
     flex-direction: column;
@@ -61,4 +62,19 @@ input{
 
 .sign-up-text{
     margin-top: 1rem;
+}
+
+.invalid-text{
+    margin-top: 5px;
+    margin-bottom: 8px;
+
+    color: rgb(146, 25, 25);
+}
+
+.login-failed-text{
+    margin-top: 5px;
+    margin-bottom: 8px;
+
+    font-size: large;
+    color: rgb(146, 25, 25);
 }

@@ -8,29 +8,32 @@
         <input #emailHtml (input)="setEmail(emailHtml.value)" type="text" placeholder="Email*">
         <div *ngIf="!emailIsAvailable && !emailIsEmpty" class="validation-icon" matTooltip="Email is already in use by another account">&nbsp;!</div>
     </div>
-    <div class="invalid-text" *ngIf="!emailIsValid && !emailIsEmpty">Please enter a valid email address</div>
+    <div class="invalid-text" *ngIf="!emailIsValid && !emailIsEmpty">Please enter a valid email address.</div>
 
     <!--Username-->
     <div class="input-container">
         <input #usern (input)="setUsername(usern.value)" type="text" placeholder="Username*">
         <div *ngIf="!usernameIsAvailable && !usernameIsEmpty" class="validation-icon" matTooltip="Username is already in use by another account">&nbsp;!</div>
     </div>
-    <div class="invalid-text" *ngIf="!usernameIsValid && !usernameIsEmpty">Use Alphanumeric characters and underscores. 8 to 32 long.</div>
+    <div class="invalid-text" *ngIf="!usernameIsValid && !usernameIsEmpty">Use Alphanumeric characters and underscores. Length of 4 to 15.</div>
 
     <!--First Name-->
     <div class="input-container">
         <input #firstN (input)="setFirstName(firstN.value)" type="text" placeholder="First Name">
     </div>
+    <div class="invalid-text" *ngIf="!firstNameIsValid">Max length is 25 characters.</div>
 
     <!--Last Name-->
     <div class="input-container">
         <input #lastN (input)="setLastName(lastN.value)" type="text" placeholder="Last Name">
     </div>
+    <div class="invalid-text" *ngIf="!lastNameIsValid">Max length is 25 characters.</div>
 
     <!--Favorite Color-->
     <div class="input-container">
         <input #favColor (input)="setFavoriteColor(favColor.value)" type="text" placeholder="Favorite Color">
     </div>
+    <div class="invalid-text" *ngIf="!favoriteColorIsValid">Max length is 40 characters. Doesn't have to be a color.</div>
 
     <!--Password-->
     <div class="input-container">
@@ -42,7 +45,7 @@
     <div class="input-container">
         <input #vPass (input)="setVerifyPassword(vPass.value)" type="password" placeholder="Confirm Password*">
     </div>
-    <div class="invalid-text" *ngIf="!verifyPasswordIsValid && !verifyPasswordIsEmpty">Passwords do not match</div>
+    <div class="invalid-text" *ngIf="!verifyPasswordIsValid && !verifyPasswordIsEmpty">Passwords do not match.</div>
 
     <!--Signup Button-->
     <div class="input-container">

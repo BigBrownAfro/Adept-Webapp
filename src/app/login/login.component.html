@@ -3,8 +3,11 @@
     <h1 class="login-title">Worthless Login Page</h1>
     <h2 class="login-subtitle">Please sign in with your <span class="link">Adept</span> account.</h2>
     <input #username (input)="setUsername(username.value)" type="text" placeholder="Username">
+    <div class="invalid-text" *ngIf="!usernameIsValid">Max length is 15 characters.</div>
     <input #password (input)="setPassword(password.value)" type="password" placeholder="Password">
-    <button (click)="login()" class="login-button">Sign in</button>
+    <div class="invalid-text" *ngIf="!passwordIsValid">Max length is 32 characters.</div>
+    <button class="login-button" (click)="login()">Sign in</button>
+    <div class="login-failed-text" *ngIf="loginFailed">Username or Password incorrect.</div>
     <div class="sign-up-text">Don't have an account? <span class="link" routerLink="/signup">Sign up</span></div>
-    <div class="sign-up-text">Don't care to have an account? <span class="link">Continue without signing in</span></div>
+    <div class="sign-up-text">Don't care to have an account? <span class="link" (click)="guestLogin()">Continue without signing in</span></div>
 </div>

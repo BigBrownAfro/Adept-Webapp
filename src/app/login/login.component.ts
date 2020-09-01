@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from  '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,12 @@ export class LoginComponent implements OnInit {
   private username:string;
   private password:string;
 
-  constructor(private dataService:DataService) {
+  usernameIsValid:boolean = true;
+  passwordIsValid:boolean = true;
+
+  loginFailed:boolean = false;
+
+  constructor(private dataService:DataService, private router:Router) {
     console.log("I LIVE!");
     
   }
@@ -24,6 +30,12 @@ export class LoginComponent implements OnInit {
    */
   setUsername(username:string){
     this.username = username;
+
+    if (this.username.length > 15){
+      this.usernameIsValid = false;
+    } else {
+      this.usernameIsValid = true;
+    }
   }
 
   /**
@@ -32,8 +44,12 @@ export class LoginComponent implements OnInit {
    */
   setPassword(rawPass:string){
     this.password = rawPass;
-    //console.log("raw pass: " + password);
-    //console.log("hashed pass: " + encrypt.hash(password));
+
+    if (this.password.length > 32){
+      this.passwordIsValid = false;
+    } else {
+      this.passwordIsValid = true;
+    }
   }
 
   /**
@@ -49,7 +65,26 @@ export class LoginComponent implements OnInit {
   /**
    * Attempts a login of the given user details
    */
-  login(){
-    this.dataService.login(this.username, this.password);
+  async login(){
+    this.loginFailed = false;
+    if (this.usernameIsValid && this.passwordIsValid){
+      const success = await this.dataService.login(this.username, this.password);
+      if (success){
+        this.router.navigateByUrl("/home");
+      } else {
+        this.loginFailed = true;
+      }
+    }
+  }
+
+  /**
+   * Attempts a login with guest credentials
+   */
+  guestLogin(){
+    this.username = "Guest";
+    this.password = "badPass1";
+    this.usernameIsValid = true;
+    this.passwordIsValid = true;
+    this.login();
   }
 }
