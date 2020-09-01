@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { fn } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,58 @@ export class DataService {
   }
 
   /**
+   * Attempts to get from the server's user services
+   * returns whether or not it succeeded
+   */
+  async checkServerConnection():Promise<boolean>{
+    var connected = false;
+    
+    await this.http.get(this.serverAddress + "user/")
+    .toPromise()
+    .then((res:{message}) => {
+      console.log("Server response : " + res.message);
+      connected = true;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    
+    return connected;
+  }
+
+  /**
+   * Sends a request for signup to the server
+   * @param em email
+   * @param un username
+   * @param fN first name
+   * @param lN last name
+   * @param fC favorite color
+   * @param p password
+   */
+  async signup(em: string, un: string, fN: string, lN: string, fC: string, p:string):Promise<boolean>{
+    var signupSuccessful:boolean = false;
+
+    await this.http.post(this.serverAddress + "user/signup/", {
+      email: em,
+      username: un,
+      firstName: fN,
+      lastName: lN,
+      favoriteColor: fC,
+      password: p
+    })
+    .toPromise()
+    .then((res: {message:string, boolean:boolean}) => {
+      console.log(res);
+      signupSuccessful = res.boolean;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+    return signupSuccessful;
+  }
+
+  /**
    * Attempts to login the user by sending the user info to the Adept server
    * @param username user username
    * @param password user password
@@ -27,16 +80,17 @@ export class DataService {
     await this.http.post(this.serverAddress + "user/login/",{
       username: username,
       password: password
-    }).subscribe((res:{message:string,signedIn:boolean}) => {
-      console.log(res)
+    })
+    .toPromise()
+    .then((res:{message:string,signedIn:boolean}) => {
+      console.log(res);
       this.signedIn = res.signedIn;
+    })
+    .catch(err => {
+      console.log(err);
     });
 
     return this.signedIn;
-  }
-
-  logout(){
-    //this.isSignedIn = false;
   }
 
   /**
@@ -50,7 +104,8 @@ export class DataService {
       .toPromise()
       .then((res: {message:string, boolean:boolean}) => {
         isAvailable = !res.boolean;
-      }).catch(err => {
+      })
+      .catch(err => {
         console.log(err);
       });
 
@@ -68,7 +123,8 @@ export class DataService {
       .toPromise()
       .then((res: {message:string, boolean:boolean}) => {
         isAvailable = !res.boolean;
-      }).catch(err => {
+      })
+      .catch(err => {
         console.log(err);
       });
 

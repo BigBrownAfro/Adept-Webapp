@@ -3,41 +3,58 @@
     <h1 class="title"><span class="link">Adept</span> Account Signup</h1>
     <h2 class="subtitle">Create your account.</h2>
 
+    <!--Email-->
     <div class="input-container">
-        <input #emailHtml (input)="setEmail(emailHtml.value)" type="text" placeholder="Email">
-        <div *ngIf="!emailIsValid" class="validation-icon" matTooltip="Email is already in use by another account">_X</div>
+        <input #emailHtml (input)="setEmail(emailHtml.value)" type="text" placeholder="Email*">
+        <div *ngIf="!emailIsAvailable && !emailIsEmpty" class="validation-icon" matTooltip="Email is already in use by another account">&nbsp;!</div>
     </div>
+    <div class="invalid-text" *ngIf="!emailIsValid && !emailIsEmpty">Please enter a valid email address</div>
 
+    <!--Username-->
     <div class="input-container">
-        <input #usern (input)="setUsername(usern.value)" type="text" placeholder="Username">
-        <div *ngIf="!usernameIsValid" class="validation-icon" matTooltip="Username is already in use by another account">_X</div>
+        <input #usern (input)="setUsername(usern.value)" type="text" placeholder="Username*">
+        <div *ngIf="!usernameIsAvailable && !usernameIsEmpty" class="validation-icon" matTooltip="Username is already in use by another account">&nbsp;!</div>
     </div>
+    <div class="invalid-text" *ngIf="!usernameIsValid && !usernameIsEmpty">Use Alphanumeric characters and underscores. 8 to 32 long.</div>
 
+    <!--First Name-->
     <div class="input-container">
         <input #firstN (input)="setFirstName(firstN.value)" type="text" placeholder="First Name">
     </div>
 
+    <!--Last Name-->
     <div class="input-container">
         <input #lastN (input)="setLastName(lastN.value)" type="text" placeholder="Last Name">
     </div>
 
+    <!--Favorite Color-->
     <div class="input-container">
         <input #favColor (input)="setFavoriteColor(favColor.value)" type="text" placeholder="Favorite Color">
     </div>
 
+    <!--Password-->
     <div class="input-container">
-        <input #pass (input)="setPassword(pass.value)" type="password" placeholder="Password">
-        <div *ngIf="!passwordIsValid" class="validation-icon" matTooltip="Invalid password">_X</div>
+        <input #pass (input)="setPassword(pass.value)" type="password" placeholder="Password*">
+    </div>
+    <div class="invalid-text" *ngIf="!passwordIsValid && !passwordIsEmpty">Include at least: 1 lowercase, 1 uppercase, and 1 number.</div>
+
+    <!--Password Validation-->
+    <div class="input-container">
+        <input #vPass (input)="setVerifyPassword(vPass.value)" type="password" placeholder="Confirm Password*">
+    </div>
+    <div class="invalid-text" *ngIf="!verifyPasswordIsValid && !verifyPasswordIsEmpty">Passwords do not match</div>
+
+    <!--Signup Button-->
+    <div class="input-container">
+        <button (click)="signup()" class="signup-button">Signup</button>
     </div>
 
-    <div class="input-container">
-        <input #vPass (input)="setVerifyPassword(vPass.value)" type="password" placeholder="Confirm Password">
-        <div *ngIf="!verifyPasswordIsValid" class="validation-icon" matTooltip="Passwords don't match">_X</div>
-    </div>
-
-    <div class="input-container">
-        <button (click)="signup()" (click)="checkUsernameAvailability()" class="signup-button">Signup</button>
-    </div>
-
+    <!--Extras-->
     <div class="return-text">Already have an account? <span routerLink="/login" class="link">Return to login</span></div>
+
+    <!--Connection Error-->
+    <div class="connection-error-container" *ngIf="!connectionMade">
+        <div class="no-connection-text">NO CONNECTION TO SERVER</div>
+        <div class="no-connection-button" (click)="checkConnectionToServer()">Retry Connection</div>
+    </div>
 </div>

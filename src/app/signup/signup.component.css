@@ -29,6 +29,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    align-content: center;
 }
 
 input{
@@ -47,8 +48,16 @@ input{
 }
 
 .validation-icon{
+    cursor: default;
+    font-family: sans-serif;
+    font: bold;
     font-size: 1.5rem;
-    color: rgb(164, 84, 218);
+    color: rgb(146, 25, 25);
+}
+
+.invalid-text{
+    margin-top: 5px;
+    color: rgb(146, 25, 25);
 }
 
 .signup-button{
@@ -69,4 +78,33 @@ input{
 
 .return-text{
     margin-top: 1rem;
+}
+
+.connection-error-container{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: .4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(22, 22, 22);
+    outline: 1px rgb(0, 0, 0) solid;
+}
+
+.no-connection-text{
+    font-size: large;
+    color: rgb(221, 0, 0);
+}
+
+.no-connection-button{
+    cursor: pointer;
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    size: fit-content;
+    background-color: rgb(36, 27, 49);
+    border: rgb(152, 133, 170) 1px solid;
+
+    color: rgb(128, 128, 128);
+    font-size: x-large;
 }
