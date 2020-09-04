@@ -1,0 +1,42 @@
+.header-container{
+    background-color: rgb(22, 22, 22);
+    border-bottom: rgb(152, 133, 170) 2px solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.header-item-left{
+    cursor: pointer;
+    padding: 2px;
+    padding-right: 4px;
+    border-right: rgb(152, 133, 170) 2px solid;
+}
+
+.header-item-left:hover{
+    background-color: rgb(27, 27, 27);
+}
+
+.header-divider{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-item-right{
+    cursor: pointer;
+    padding: 2px;
+    padding-left: 4px;
+    border-left: rgb(152, 133, 170) 2px solid;
+}
+
+.header-item-right:hover{
+    background-color: rgb(27, 27, 27);
+}
+
+.profile-icon{
+    width: 4rem;
+    height: 4rem;
+}

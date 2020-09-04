@@ -83,6 +83,12 @@ body {
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+button{
+    background-color: rgb(36, 27, 49);
+    border: rgb(152, 133, 170) 1px solid;
+    color: rgb(150, 150, 150);
+}
+
 .common-container{
 	margin-left: auto;
     margin-right: auto;
