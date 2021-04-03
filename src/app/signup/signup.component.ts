@@ -19,6 +19,9 @@ export class SignupComponent implements OnInit {
 
   emailIsValid:boolean = false;
   usernameIsValid:boolean = false;
+  firstNameIsValid:boolean = true;
+  lastNameIsValid:boolean = true;
+  favoriteColorIsValid:boolean = true;
   passwordIsValid:boolean = false;
   verifyPasswordIsValid:boolean = true;
   
@@ -158,27 +161,48 @@ export class SignupComponent implements OnInit {
   }
 
   /**
-   * Sets the first name to be used on signup
+   * Sets the first name to be used on signup and validates it
    * @param name first name of user
    */
   setFirstName(name:string){
     this.firstName = name;
+
+    //validation
+    if (this.firstName.length > 25){
+      this.firstNameIsValid = false;
+    } else {
+      this.firstNameIsValid = true;
+    }
   }
 
   /**
-   * Sets the last name to be used on signup
+   * Sets the last name to be used on signup and validates it
    * @param name last name of user
    */
   setLastName(name:string){
     this.lastName = name;
+
+    //validation
+    if (this.lastName.length > 25){
+      this.lastNameIsValid = false;
+    } else {
+      this.lastNameIsValid = true;
+    }
   }
 
   /**
-   * Sets the favorite color to be used on signup
+   * Sets the favorite color to be used on signup and validates it
    * @param color favorite color of user
    */
   setFavoriteColor(color:string){
     this.favoriteColor = color;
+
+    //validation
+    if (this.favoriteColor.length > 40){
+      this.favoriteColorIsValid = false;
+    } else {
+      this.favoriteColorIsValid = true;
+    }
   }
 
   /**
@@ -203,7 +227,11 @@ export class SignupComponent implements OnInit {
     const serverConnected = await this.dataService.checkServerConnection();
     if (canSignup && serverConnected){
       console.log("Sent signup information");
-      const result = this.dataService.signup(this.email, this.username, this.firstName, this.lastName, this.favoriteColor, this.password)
+      const success:boolean = await this.dataService.signup(this.email, this.username, this.firstName, this.lastName, this.favoriteColor, this.password);
+      if (success){
+        console.log("Successful signup");
+        this.router.navigateByUrl('/successful-signup')
+      }
     }
   }
 
@@ -238,7 +266,7 @@ export class SignupComponent implements OnInit {
     this.validateUsername();
     this.validatePassword();
     this.validateVerifyPassword();
-    if(!this.emailIsValid || !this.usernameIsValid || !this.passwordIsValid || !this.verifyPasswordIsValid){
+    if(!this.emailIsValid || !this.usernameIsValid || !this.passwordIsValid || !this.verifyPasswordIsValid || !this.firstNameIsValid || !this.lastNameIsValid || !this.favoriteColorIsValid){
       isValid = false;
     }
     return isValid

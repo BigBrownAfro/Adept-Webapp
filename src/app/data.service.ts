@@ -9,12 +9,9 @@ import { fn } from '@angular/compiler/src/output/output_ast';
 })
 export class DataService {
   private serverAddress:string = "http://localhost:3000/";
-  private signedIn = false;
 
-  constructor(private http: HttpClient) { }
-
-  isSignedIn():boolean{
-    return this.signedIn;
+  constructor(private http: HttpClient) {
+    
   }
 
   /**
@@ -26,7 +23,7 @@ export class DataService {
     
     await this.http.get(this.serverAddress + "user/")
     .toPromise()
-    .then((res:{message}) => {
+    .then((res:{message,databaseConnection}) => {
       console.log("Server response : " + res.message);
       connected = true;
     })
@@ -75,7 +72,7 @@ export class DataService {
    * @param password user password
    */
   async login(username:string, password:string):Promise<boolean>{
-    this.signedIn = false;
+    var signedIn = false;
 
     await this.http.post(this.serverAddress + "user/login/",{
       username: username,
@@ -84,13 +81,13 @@ export class DataService {
     .toPromise()
     .then((res:{message:string,signedIn:boolean}) => {
       console.log(res);
-      this.signedIn = res.signedIn;
+      signedIn = res.signedIn;
     })
     .catch(err => {
       console.log(err);
     });
 
-    return this.signedIn;
+    return signedIn;
   }
 
   /**
