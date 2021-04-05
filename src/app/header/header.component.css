@@ -1,39 +1,39 @@
 .header-container{
-    background-color: rgb(22, 22, 22);
-    border-bottom: rgb(152, 133, 170) 2px solid;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    background-color: rgb(27, 27, 27);
+    /*border-bottom: rgb(152, 133, 170) 2px solid;*/
 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
-.header-item-left{
+.header-item{
     cursor: pointer;
-    padding: 2px;
-    padding-right: 4px;
-    border-right: rgb(152, 133, 170) 2px solid;
+    padding: 3px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /*border-right: rgb(152, 133, 170) 1px solid;*/
+
+    display: flex;
+    justify-content: center;
 }
 
-.header-item-left:hover{
-    background-color: rgb(27, 27, 27);
+.header-item:hover{
+    background-color: rgb(33, 33, 33);
+}
+
+.header-item > div{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header-item:hover > div{
+    color: white;
 }
 
 .header-divider{
     margin-left: auto;
     margin-right: auto;
-}
-
-.header-item-right{
-    cursor: pointer;
-    padding: 2px;
-    padding-left: 4px;
-    border-left: rgb(152, 133, 170) 2px solid;
-}
-
-.header-item-right:hover{
-    background-color: rgb(27, 27, 27);
 }
 
 .profile-icon{
