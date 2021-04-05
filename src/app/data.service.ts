@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { fn } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
